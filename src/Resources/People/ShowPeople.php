@@ -15,7 +15,7 @@ class ShowPeople extends ViewPeople
             'last_education_id'   => $this->last_education_id,
             'last_education'      => $this->prop_last_education,
             'marital_status_id'   => $this->marital_status_id,
-            'marital_status'      => $this->marital_status,
+            'marital_status'      => $this->prop_marital_status,
             'total_children'      => $this->total_children,
             'email'               => $this->email,
             'father_name'         => $this->father_name,

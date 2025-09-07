@@ -48,6 +48,8 @@ class FamilyRelationshipData extends Data implements DataFamilyRelationshipData{
     public static function after(self $data): self{
         $new = self::new();
 
+        $props = &$data->props;
+
         if (isset($data->family_role)){
             $data->family_role->flag = 'FamilyRole';
             $family_role = app(config('app.contracts.FamilyRole'))->prepareStoreFamilyRole($data->family_role);
@@ -57,7 +59,7 @@ class FamilyRelationshipData extends Data implements DataFamilyRelationshipData{
             $family_role = (isset($data->family_role_id)) ? $family_role->findOrFail($data->family_role_id) : $family_role;
         }
 
-        $props['prop_family_role'] = $family_role->toViewApi()->resolve();
+        $props['prop_family_role'] = $family_role->toViewApiOnlies('id','name','flag','label');
         return $data;
     }
 }

@@ -19,7 +19,10 @@ class ViewFamilyRelationship extends ApiResource
             'id'             => $this->id,
             'name'           => $this->name, 
             'phone'          => $this->phone, 
-            'role'           => $this->role
+            'family_role_id' => $this->family_role_id,
+            'family_role'    => $this->relationValidation('familyRole',function(){
+                return $this->familyRole->toViewApi()->resolve();
+            },$this->prop_family_role)
         ];
         return $arr;
     }

@@ -35,6 +35,7 @@ class People extends BaseModulePeople implements ContractsPeople
             'first_name'         => $people_dto->first_name,
             'sex'                => $people_dto->sex ?? null,
             'blood_type'         => $people_dto->blood_type ?? null,
+            'religion_id'        => $people_dto->religion_id ?? null,
             'country_id'         => $people_dto->country_id ?? null,
             'father_name'        => $people_dto->father_name ?? null,
             'mother_name'        => $people_dto->mother_name ?? null,
@@ -73,14 +74,16 @@ class People extends BaseModulePeople implements ContractsPeople
             $family = $people_dto->family_relationship;
             $family->people_id = $people->getKey();
             $family = $this->schemaContract('family_relationship')->prepareStoreFamilyRelationship($family);
+            $people_dto->props['prop_family_relationship'] = $family->toViewApi()->resolve();
         } 
+
         if (isset($people_dto->card_identity)){
             $card_identity = $people_dto->card_identity;
             $this->peopleIdentity($people, $card_identity,array_column(config('module-people.card_identities'),'value'));
         }
+        $this->fillingProps($people,$people_dto->props);
         $people->save();
         $people->refresh();
-
         return $this->people_model = $people;
     }
 

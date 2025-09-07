@@ -18,8 +18,10 @@ class FamilyRelationship extends BaseModel
     protected $keyType = 'string';
 
     protected $list = [
-        'id', 'people_id', 
+        'id', 
+        'people_id', 
         'name', 
+        'sex', 
         'phone', 
         'family_role_id', 
         'reference_id', 

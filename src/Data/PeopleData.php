@@ -86,6 +86,10 @@ class PeopleData extends Data implements DataPeopleData{
     #[MapName('is_nationality')]
     public mixed $is_nationality = null;
 
+    #[MapInputName('religion_id')]
+    #[MapName('religion_id')]
+    public mixed $religion_id = null;
+
     #[MapInputName('country_id')]
     #[MapName('country_id')]
     public mixed $country_id = null;
@@ -115,23 +119,25 @@ class PeopleData extends Data implements DataPeopleData{
             $data->name = trim(implode(' ', [$data->first_name ?? '', $data->last_name]));
         }
 
+        $props = &$data->props;
+
         $new = static::new();
-        $data->props['prop_country'] = [
+        $props['prop_country'] = [
             'id'   => $data->country_id ?? null,
             'name' => null
         ];
-        if (isset($data->props['prop_country']['id']) && !isset($data->props['prop_country']['name'])){
-            $country = $new->CountryModel()->findOrFail($data->props['prop_country']['id']);
-            $data->props['prop_country']['name'] = $country->name;
+        if (isset($props['prop_country']['id']) && !isset($props['prop_country']['name'])){
+            $country = $new->CountryModel()->findOrFail($props['prop_country']['id']);
+            $props['prop_country']['name'] = $country->name;
         }
 
         $last_education = $new->EducationModel();
         $last_education = (isset($data->last_education_id)) ? $last_education->findOrFail($data->last_education_id) : $last_education;
-        $props['prop_last_education'] = $last_education->toViewApi()->resolve();
+        $props['prop_last_education'] = $last_education->toViewApiOnlies('id','name','flag','label');
         
         $marital_status = $new->MaritalStatusModel();
         $marital_status = (isset($data->marital_status_id)) ? $marital_status->findOrFail($data->marital_status_id) : $marital_status;
-        $props['prop_marital_status'] = $marital_status->toViewApi()->resolve();
+        $props['prop_marital_status'] = $marital_status->toViewApiOnlies('id','name','flag','label');
         return $data;
     }
 }
