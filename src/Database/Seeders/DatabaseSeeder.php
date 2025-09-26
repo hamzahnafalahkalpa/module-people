@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PeopleStuffSeeder::class,
             EducationSeeder::class,
-            FamilyRoleSeeder::class
+            FamilyRoleSeeder::class,
+            ReligionSeeder::class
         ]);
     }
 }

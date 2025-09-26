@@ -138,6 +138,10 @@ class PeopleData extends Data implements DataPeopleData{
         $marital_status = $new->MaritalStatusModel();
         $marital_status = (isset($data->marital_status_id)) ? $marital_status->findOrFail($data->marital_status_id) : $marital_status;
         $props['prop_marital_status'] = $marital_status->toViewApiOnlies('id','name','flag','label');
+
+        $religion = $new->ReligionModel();
+        $religion = (isset($data->religion_id)) ? $religion->findOrFail($data->religion_id) : $religion;
+        $props['prop_religion'] = $religion->toViewApiOnlies('id','name','flag','label');
         return $data;
     }
 }

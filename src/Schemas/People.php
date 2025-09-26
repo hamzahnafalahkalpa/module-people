@@ -39,6 +39,7 @@ class People extends BaseModulePeople implements ContractsPeople
             'country_id'         => $people_dto->country_id ?? null,
             'father_name'        => $people_dto->father_name ?? null,
             'mother_name'        => $people_dto->mother_name ?? null,
+            'religion_id'        => $people_dto->religion_id ?? null,
             'last_education_id'  => $people_dto->last_education_id ?? null, 
             'total_children'     => $people_dto->total_children ?? null, 
             'marital_status_id'  => $people_dto->marital_status_id ?? null
