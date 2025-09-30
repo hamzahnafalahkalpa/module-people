@@ -10,7 +10,7 @@ class ShowPeople extends ViewPeople
     public function toArray(\Illuminate\Http\Request $request): array
     {
         $arr = [
-            'profile'             => $this->profile,
+            'profile'             => asset($this->profile),
             'blood_type'          => $this->blood_type,
             'last_education_id'   => $this->last_education_id,
             'last_education'      => $this->prop_last_education,
