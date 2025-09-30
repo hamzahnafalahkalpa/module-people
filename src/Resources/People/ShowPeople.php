@@ -14,6 +14,8 @@ class ShowPeople extends ViewPeople
             'blood_type'          => $this->blood_type,
             'last_education_id'   => $this->last_education_id,
             'last_education'      => $this->prop_last_education,
+            'religion_id'         => $this->religion_id,
+            'religion'            => $this->prop_religion,
             'marital_status_id'   => $this->marital_status_id,
             'marital_status'      => $this->prop_marital_status,
             'total_children'      => $this->total_children,

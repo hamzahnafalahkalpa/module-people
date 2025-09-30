@@ -10,6 +10,7 @@ use Hanafalah\ModulePeople\Models\MaritalStatus;
 use Hanafalah\ModulePeople\Models\People\{
     People
 };
+use Hanafalah\ModulePeople\Models\Religion;
 use Hanafalah\ModuleRegional\Models\Citizenship\Country;
 
 return new class extends Migration
@@ -36,6 +37,7 @@ return new class extends Migration
                 $country   = app(config('database.models.Country', Country::class));
                 $education = app(config('database.models.Education', Education::class));
                 $marital_status = app(config('database.models.MaritalStatus', MaritalStatus::class));
+                $religion = app(config('database.models.Religion', Religion::class));
 
                 $table->ulid('id')->primary();
                 $table->string('uuid', 36)->nullable();
@@ -46,6 +48,7 @@ return new class extends Migration
                 $table->string('pob', 150)->nullable();
                 $table->string('sex',100)->comment(implode(', ',array_column(Sex::cases(), 'value')))->nullable(false);
                 $table->foreignIdFor($marital_status::class)->nullable()->index();
+                $table->foreignIdFor($religion::class)->nullable()->index();
 
                 $table->string('blood_type',100)->comment(implode(', ',array_column(BloodType::cases(), 'value')))->nullable();
                 $table->string('mother_name', 50)->nullable();
