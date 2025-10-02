@@ -13,7 +13,7 @@ class PeopleStuffSeeder extends Seeder
      */
     public function run()
     {
-        $educationModel = app(config('database.models.PeopleStuff'));
+        $peopleStuffModel = app(config('database.models.PeopleStuff'));
 
         $data = [
             ['label' => 'Kawin', 'flag' => 'MaritalStatus', 'name' => 'Kawin'],
@@ -25,7 +25,7 @@ class PeopleStuffSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            $educationModel::updateOrCreate([
+            $peopleStuffModel::updateOrCreate([
                 'name' => $item['name'],
                 'flag' => $item['flag'] ?? 'PeopleStuff',
                 'label' => $item['label']
