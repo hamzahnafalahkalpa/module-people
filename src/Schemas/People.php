@@ -24,8 +24,12 @@ class People extends BaseModulePeople implements ContractsPeople
         ]
     ];
 
-    public function prepareStorePeople(PeopleData $people_dto): Model{
-        $people = $this->people()->updateOrCreate([
+    public function prepareStore(PeopleData $people_dto): Model{
+        return $this->prepareStorePeople($people_dto);
+    }
+
+    protected function createPeople(PeopleData &$people_dto): Model{
+        return $this->people()->updateOrCreate([
             'id' => $people_dto->id ?? null
         ], [
             'name'               => $people_dto->name,
@@ -44,6 +48,10 @@ class People extends BaseModulePeople implements ContractsPeople
             'total_children'     => $people_dto->total_children ?? null, 
             'marital_status_id'  => $people_dto->marital_status_id ?? null
         ]);
+    }
+
+    public function prepareStorePeople(PeopleData $people_dto): Model{
+        $people = $this->createPeople($people_dto);
 
         $people->nationality = $people_dto->is_nationality ?? request()->nationality ?? true;
         $this->fillingProps($people,$people_dto->props);
