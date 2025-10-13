@@ -126,6 +126,12 @@ class PeopleData extends Data implements DataPeopleData{
             'id'   => $data->country_id ?? null,
             'name' => null
         ];
+
+        $phones = &$data->phones;
+        if (isset($props['phone_1'])) $phones[] = $props['phone_1'];
+        if (isset($props['phone_2'])) $phones[] = $props['phone_2'];
+        
+
         if (isset($props['prop_country']['id']) && !isset($props['prop_country']['name'])){
             $country = $new->CountryModel()->findOrFail($props['prop_country']['id']);
             $props['prop_country']['name'] = $country->name;
