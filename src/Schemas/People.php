@@ -65,7 +65,8 @@ class People extends BaseModulePeople implements ContractsPeople
         if (isset($people_dto->address)){
             $address = $people_dto->address;
             if (isset($address->ktp,$address->ktp->name)) {
-                $address->ktp = $this->requestDTO(AddressData::class,$address->ktp->toArray());
+
+                // $address->ktp = $this->requestDTO(AddressData::class,$address->ktp->toArray());
                 $people->setAddress(Flag::KTP->value, $address->ktp->toArray());
             }
     
@@ -73,7 +74,7 @@ class People extends BaseModulePeople implements ContractsPeople
             if ($same_as_ktp) $address->residence = $address->ktp;            
     
             if (isset($address->residence,$address->residence->name)) {
-                if (!$same_as_ktp) $address->residence = $this->requestDTO(AddressData::class,$address->residence->toArray());
+                // if (!$same_as_ktp) $address->residence = $this->requestDTO(AddressData::class,$address->residence->toArray());
                 $people->setAddress(Flag::RESIDENCE->value, $address->residence->toArray());
             }
         }
