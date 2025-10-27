@@ -53,7 +53,7 @@ class People extends BaseModulePeople implements ContractsPeople
     public function prepareStorePeople(PeopleData $people_dto): Model{
         $people = $this->createPeople($people_dto);
 
-        $people->nationality = $people_dto->is_nationality ?? request()->nationality ?? true;
+        $people->nationality = $people_dto->props['nationality'] ?? $people_dto->is_nationality ?? true;
         $this->fillingProps($people,$people_dto->props);
         
         $people->save();

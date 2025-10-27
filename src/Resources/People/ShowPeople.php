@@ -23,6 +23,7 @@ class ShowPeople extends ViewPeople
             'father_name'         => $this->father_name,
             'mother_name'         => $this->mother_name,
             'is_nationality'      => $this->boolValidate('is_nationality'),
+            'nationality'         => $this->boolValidate('nationality'),
             'country'             => $this->prop_country,
             'family_relationship' => $this->relationValidation("familyRelationship", function () {
                 return $this->familyRelationShip->toShowApi()->resolve();

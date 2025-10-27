@@ -16,12 +16,5 @@
         "hanafalah/module-user": "dev-main",
         "hanafalah/module-card-identity": "dev-main",
         "hanafalah/module-regional": "dev-main"
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Hanafalah\\ModulePeople\\ModulePeopleServiceProvider"
-            ]
-        }
     }
 }
