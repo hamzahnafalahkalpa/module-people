@@ -13,6 +13,10 @@ class CardIdentityData extends Data implements DataCardIdentityData{
     #[MapName('nik')]
     public ?string $nik = null;
 
+    #[MapInputName('nik_ibu')]
+    #[MapName('nik_ibu')]
+    public ?string $nik_ibu = null;
+
     #[MapInputName('kk')]
     #[MapName('kk')]
     public ?string $kk = null;
