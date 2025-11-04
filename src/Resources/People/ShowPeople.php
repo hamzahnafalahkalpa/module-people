@@ -27,9 +27,7 @@ class ShowPeople extends ViewPeople
             'country'             => $this->prop_country,
             'family_relationship' => $this->relationValidation("familyRelationship", function () {
                 return $this->familyRelationShip->toShowApi()->resolve();
-            }),
-            'phone_1' => $this->phone_1,
-            'phone_2' => $this->phone_2,
+            }),        
             'phones' => $this->relationValidation('hasPhones', function () {
                 return $this->hasPhones->transform(function ($phone) {
                     return $phone->toShowApi();

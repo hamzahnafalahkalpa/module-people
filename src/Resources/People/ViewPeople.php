@@ -24,7 +24,9 @@ class ViewPeople extends ApiResource
             "dob"           => $this->dob ?? null,
             "pob"           => $this->pob ?? null,
             "sex"           => $this->sex ?? null,
-            'card_identity' => $this->prop_card_identity
+            'card_identity' => $this->prop_card_identity,
+            'phone_1' => $this->phone_1,
+            'phone_2' => $this->phone_2,
         ];
 
         return $arr;
