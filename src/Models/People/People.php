@@ -17,7 +17,8 @@ use Hanafalah\ModuleRegional\Concerns\HasLocation;
 class People extends BaseModel
 {
     use HasUlids, HasCardIdentity, HasAddress, 
-        HasUserReference, HasProps, HasLocation, HasPhone;
+        // HasUserReference, 
+        HasProps, HasLocation, HasPhone;
 
     protected $table          = 'peoples';
     public $incrementing      = false;
