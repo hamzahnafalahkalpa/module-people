@@ -25,7 +25,7 @@ class PeopleStuffSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            $peopleStuffModel::updateOrCreate([
+            $peopleStuffModel::withoutGlobalScopes()->updateOrCreate([
                 'name' => $item['name'],
                 'flag' => $item['flag'] ?? 'PeopleStuff',
                 'label' => $item['label']

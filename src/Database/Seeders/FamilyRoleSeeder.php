@@ -2,10 +2,13 @@
 
 namespace Hanafalah\ModulePeople\Database\Seeders;
 
+use Hanafalah\LaravelSupport\Concerns\Support\HasRequestData;
 use Illuminate\Database\Seeder;
 
 class FamilyRoleSeeder extends Seeder
 {
+    use HasRequestData;
+
     /**
      * Seed the application's database.
      *
@@ -30,11 +33,16 @@ class FamilyRoleSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            $familyRoleModel::updateOrCreate([
-                'name' => $item['name'],
-                'flag' => 'FamilyRole',
-                'label' => $item['label']
-            ]);
+            app(config('app.contracts.FamilyRole'))->prepareStoreFamilyRole(
+                $this->requestDTO(
+                    config('app.contracts.FamilyRoleData'),
+                    [
+                        'name'  => $item['name'],
+                        'label' => $item['label'],
+                        'flag'  => 'FamilyRole'
+                    ]
+                )
+            );
         }
     }
 }

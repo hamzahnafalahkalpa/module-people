@@ -28,7 +28,7 @@ class EducationSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
-            $educationModel::updateOrCreate([
+            $educationModel::withoutGlobalScopes()->updateOrCreate([
                 'name' => $item['name'],
                 'flag' => 'Education',
                 'label' => $item['label']
