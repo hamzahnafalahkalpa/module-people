@@ -102,7 +102,7 @@ class People extends BaseModulePeople implements ContractsPeople
         foreach ($types as $type) {
             $lower_type = Str::lower($type);
             $value = $card_identity_dto->{$lower_type} ?? null;
-            if (isset($value)) $people->setCardIdentity($type, $card_identity_dto->{$lower_type});
+            if (isset($value)) $people->setCardIdentity($lower_type, $card_identity_dto->{$lower_type});
             $card_identity[$lower_type] = $value;
         }
         $people->setAttribute('prop_card_identity',$card_identity);
