@@ -32,7 +32,7 @@ class ShowPeople extends ViewPeople
                 return $this->hasPhones->transform(function ($phone) {
                     return $phone->toShowApi();
                 });
-            }),
+            },$this->prop_phones),
             'address' => $this->relationValidation('addresses', function () {
                 return (object) $this->addresses->mapWithKeys(function ($address) {
                     return [Str::lower($address->flag) => new ShowAddress($address)];

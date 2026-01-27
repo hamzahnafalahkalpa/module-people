@@ -130,7 +130,9 @@ class PeopleData extends Data implements DataPeopleData{
         $phones = &$data->phones;
         if (isset($props['phone_1'])) $phones[] = $props['phone_1'];
         if (isset($props['phone_2'])) $phones[] = $props['phone_2'];
-        
+        $props['phone_1'] ??= $phones[0] ?? null;
+        $props['phone_2'] ??= $phones[1] ?? null;
+        $props['prop_phones'] ??= $phones ?? [];
 
         if (isset($props['prop_country']['id']) && !isset($props['prop_country']['name'])){
             $country = $new->CountryModel()->findOrFail($props['prop_country']['id']);

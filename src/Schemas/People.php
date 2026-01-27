@@ -69,7 +69,11 @@ class People extends BaseModulePeople implements ContractsPeople
                 // $address->ktp = $this->requestDTO(AddressData::class,$address->ktp->toArray());
                 $people->setAddress(Flag::KTP->value, $address->ktp->toArray());
             }
-    
+            
+            $address->residence_same_as_ktp = filter_var(
+                $address->residence_same_as_ktp,
+                FILTER_VALIDATE_BOOLEAN
+            );
             $same_as_ktp = isset($address->residence_same_as_ktp) && $address->residence_same_as_ktp;
             if ($same_as_ktp) $address->residence = $address->ktp;            
     
