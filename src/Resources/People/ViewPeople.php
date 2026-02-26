@@ -16,7 +16,7 @@ class ViewPeople extends ApiResource
     public function toArray(\Illuminate\Http\Request $request): array
     {
         $dob = $this->dob ?? null;
-        $age = $dob ? \Carbon\Carbon::parse($dob)->age : null;
+        $age = isset($dob) ? \Carbon\Carbon::parse($dob)->age : null;
         $arr = [
             'id'            => $this->id,
             'uuid'          => $this->uuid,
