@@ -2,9 +2,6 @@
 
 namespace Hanafalah\ModulePeople\Resources\People;
 
-use Hanafalah\ModuleRegional\Resources\Address\ShowAddress;
-use Illuminate\Support\Str;
-
 class ShowPeople extends ViewPeople
 {
     public function toArray(\Illuminate\Http\Request $request): array
@@ -32,12 +29,7 @@ class ShowPeople extends ViewPeople
                 return $this->hasPhones->transform(function ($phone) {
                     return $phone->toShowApi();
                 });
-            },$this->prop_phones),
-            'address' => $this->relationValidation('addresses', function () {
-                return (object) $this->addresses->mapWithKeys(function ($address) {
-                    return [Str::lower($address->flag) => new ShowAddress($address)];
-                });
-            })
+            },$this->prop_phones) 
         ];
 
         $arr = array_merge(parent::toArray($request), $arr);

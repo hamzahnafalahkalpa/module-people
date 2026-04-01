@@ -4,6 +4,7 @@ namespace Hanafalah\ModulePeople\Resources\People;
 
 use Hanafalah\LaravelSupport\Resources\ApiResource;
 use Illuminate\Support\Str;
+use Hanafalah\ModuleRegional\Resources\Address\ShowAddress;
 
 class ViewPeople extends ApiResource
 {
@@ -30,6 +31,11 @@ class ViewPeople extends ApiResource
             'card_identity' => $this->prop_card_identity,
             'phone_1' => $this->phone_1,
             'phone_2' => $this->phone_2,
+            'address' => $this->relationValidation('addresses', function () {
+                return (object) $this->addresses->mapWithKeys(function ($address) {
+                    return [Str::lower($address->flag) => new ShowAddress($address)];
+                });
+            })
         ];
 
         return $arr;
